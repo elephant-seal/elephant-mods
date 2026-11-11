@@ -1,0 +1,107 @@
+namespace = little_ice_age
+
+little_ice_age.16 = { #Brrr it's getting cold!
+	type = country_event
+	category = situation_event
+	title = winter_events.16.title
+	desc = winter_events.16.desc
+	outcome = neutral
+	historical_info = winter_events.16.historical_info
+	image = "gfx/interface/illustrations/situation/little_ice_age.dds"
+
+	trigger = {
+		num_locations > 0
+	}
+
+	immediate = {
+		every_owned_location = {
+			limit = {
+				is_ownable = yes
+				area = { has_extended_winter = yes }
+			}
+			add_to_list = bgf_affected_locations
+			add_location_modifier = { modifier = bgf_food mode = replace years = 1 }
+			add_location_modifier = { modifier = bgf_land_attrition mode = replace years = 1 }
+			if = {
+				limit = {
+					OR = {
+						raw_material = goods:wheat
+						raw_material = goods:rice
+						raw_material = goods:maize
+					}
+				}
+				add_location_modifier = { modifier = bgf_grain mode = replace years = 1 }
+			}
+		}
+		every_province = {
+			limit = {
+				any_location_in_province = {
+					owner = root
+					area = { has_extended_winter = yes }
+				}
+			}
+			add_to_list = bgf_affected_provinces
+			if = {
+				limit = {
+					any_location_in_province = {
+						owner = root
+						area = { has_extended_winter = yes }
+						winter_level = severe
+					}
+				}
+				change_province_food_percentage = -0.15
+			}
+			else_if = {
+				limit = {
+					any_location_in_province = {
+						owner = root
+						area = { has_extended_winter = yes }
+						winter_level = normal
+					}
+				}
+				change_province_food_percentage = -0.10
+			}
+			else_if = {
+				limit = {
+					any_location_in_province = {
+						owner = root
+						area = { has_extended_winter = yes }
+						winter_level = mild
+					}
+				}
+				change_province_food_percentage = -0.05
+			}
+			else = {
+				change_province_food_percentage = -0.03
+			}
+		}
+		save_scope_value_as = {
+			name = bgf_location_count
+			value = {
+				value = 0
+				every_in_list = { list = bgf_affected_locations add = 1 }
+			}
+		}
+		save_scope_value_as = {
+			name = bgf_province_count
+			value = {
+				value = 0
+				every_in_list = { list = bgf_affected_provinces add = 1 }
+			}
+		}
+	}
+
+	option = {
+		name = winter_events.16.a
+
+		custom_tooltip = bgf_regional_effects_tt
+		custom_tooltip = bgf_stockpiles_tt
+		add_stability = stability_very_extreme_penalty
+
+		custom_tooltip = bgf_affected_locations_tt
+		every_in_list = {
+			list = bgf_affected_locations
+			custom_tooltip = { text = bgf_affected_location_tt }
+		}
+	}
+}

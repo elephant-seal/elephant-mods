@@ -1,0 +1,16 @@
+{
+  "name": "Better Great Frost",
+  "id": "better-great-frost",
+  "version": "0.3.0",
+  "supported_game_version": "1.4.7",
+  "short_description": "Makes the Great Frost affect locations with extended winters and their province food stockpiles.",
+  "tags": [
+    "Events",
+    "Gameplay"
+  ],
+  "relationships": [],
+  "game_custom_data": {
+    "replace_paths": [],
+    "multiplayer_synchronized": true
+  }
+}

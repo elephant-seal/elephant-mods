@@ -1,0 +1,8 @@
+﻿l_english:
+ STATIC_MODIFIER_NAME_bgf_food: "Great Frost: Failed Harvests"
+ STATIC_MODIFIER_NAME_bgf_grain: "Great Frost: Grain Losses"
+ STATIC_MODIFIER_NAME_bgf_land_attrition: "Great Frost: Army Attrition"
+ bgf_regional_effects_tt: "For one year, [SCOPE.GetValue('bgf_location_count')|0V] of our [locations|e] suffer lower food production and population growth and higher army attrition. Affected wheat, rice and maize locations also lose raw material output."
+ bgf_stockpiles_tt: "[SCOPE.GetValue('bgf_province_count')|0V] [provinces|e] lose stored food once, based on the harshest winter among our affected locations in each province."
+ bgf_affected_locations_tt: "#T Affected locations#!"
+ bgf_affected_location_tt: "$BULLET$[THIS.GetLocation.GetName]"
